@@ -1,0 +1,78 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins');
+        :root {
+            --accentColor: darkblue;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* overflow: hidden; */
+        }
+        button {
+            padding:0.5rem;
+            border-radius: 0.25rem;
+            border:2px solid transparent;
+            background-color: var(--accentColor);
+            color:aliceblue;
+        }
+        button:hover {
+            background-color: transparent;
+            border:2px solid var(--accentColor);
+            color:var(--accentColor);
+        }
+        #register {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:100vh;
+            width:100vw;
+        }
+        #register > form {
+            padding: 1rem;
+            /* border:2px solid var(--accentColor);
+            border-radius: 0.3rem; */
+        }
+        .interest-imgs {
+            width: 100px;
+            position: relative;
+            border-radius:0.5rem;
+        }
+        .interest-imgs::after {
+            content: attr(class);
+            width: 100px;
+            height:100px;
+            color:red;
+            background-color: black;
+            z-index: 1;
+            top:0;
+            left:0;
+        }
+        .interest-imgs:hover {
+            box-shadow: 0 0 0 5px rgba(1, 1, 194, 0.371);
+        }
+        input[type=checkbox] {
+            position: absolute;
+            z-index: 1;
+            
+        }
+        input[type=text]  {
+            width: 100%;
+        }
+        .interest-text {
+            /* position: absolute; */
+            top:1px;
+            z-index: 1;
+            color:red;
+        }
+        #login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:100vh;
+            width:100vw;
+        }
+    </style>
+</head>

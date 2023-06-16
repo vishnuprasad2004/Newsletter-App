@@ -1,0 +1,125 @@
+<html>
+<%- include('./head.ejs') %>
+<body>
+    <div id="register">
+        <form action="/register" method="post">
+            <table>
+                <tr>
+                    <td colspan="2"><h2>Register Now</h2></td>
+                </tr>
+                <tr>
+                    <td><span style="color:red">*</span><label for="name">Name:</label></td> 
+                    <td><input type="text" placeholder="Miles Morales" name="name" required></td>       
+                </tr>
+                <tr>
+                    <td><label for="age">&nbsp;&nbsp;Date of Birth:</label></td>
+                    <td><input type="date" name="dob" id="dob"></td>
+                </tr>
+                <tr>
+                    <td><span style="color:red">*</span><label for="email">Email:</label></td>
+                    <td><input type="email" name="email" id="email" placeholder="something@gmail.com" required></td>
+                </tr>
+                <tr>
+                    <td><span style="color:red">*</span><label for="password">Password:</label></td>
+                    <td><input type="password" name="password" id="password" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2">&nbsp;&nbsp;<label>Interests:</label></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <table>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="interests" value="technology">
+                                    <label for="">
+                                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dGVjaG5vbG9neXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Technology" class="interest-imgs"> 
+                                        <br><span class="interest-text">Technology</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="interests" value="entertainment">
+                                    <label for="">
+                                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bW92aWVzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="Entertainment" class="interest-imgs">
+                                        <br>
+                                        <span class="interest-text">Entertainment</span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="interests" value="education">
+                                    <label for="">
+                                        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZWR1Y2F0aW9ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="Education" class="interest-imgs">
+                                        <br>
+                                        <span class="interest-text">Education</span> 
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="interests" value="politics">
+                                    <label for="">
+                                        <img src="https://media.istockphoto.com/id/161769009/photo/new-delhi-india.webp?b=1&s=170667a&w=0&k=20&c=vD9tPFbKIcJLsQc9DUoqm2Wrd1DOCEw4mh1JYlcMzAY=" alt="Politics" class="interest-imgs">
+                                        <br>
+                                        <span class="interest-text">Politics</span> 
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="interests" value="geopolitics">
+                                    <label for="">
+                                        <img src="https://images.unsplash.com/photo-1589262804704-c5aa9e6def89?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBvbGl0aWNzfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="Geopolitics" class="interest-imgs">
+                                        <br>
+                                        <span class="interest-text">Geo Politics</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="interests" value="marvel">
+                                    <label for="">
+                                        <img src="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFydmVsfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60" alt="Marvel" class="interest-imgs">
+                                        <br>
+                                        <span class="interest-text">Marvel</span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="interests" value="business">
+                                    <label for="">
+                                        <img src="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YnVzaW5lc3MlMjBtb25leXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Business" class="interest-imgs"> 
+                                        <br>
+                                        <span class="interest-text">Business</span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="interests" value="sports">
+                                    <label for="">
+                                        <img src="https://plus.unsplash.com/premium_photo-1684888562275-09850d230c4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHNwb3J0c3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Sports" class="interest-imgs"> 
+                                        <br>
+                                        <span class="interest-text">Sports</span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="interests" value="science">
+                                    <label for="">
+                                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHNjaWVuY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Science" class="interest-imgs">
+                                        <br>
+                                        <span class="interest-text">Science</span>
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;"><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+    </script>
+</body>
+</html>
