@@ -1,36 +1,75 @@
-const nodemailer = require('nodemailer');
+const { transporter } = require('./mailer.config');
+const { getNews } = require("./getNews");
 
-const mailer = async(data) => {
+let messages = [
+    // signed In
+    {
+        subject:"Welcome to Newsletter App",
+        content:`
+        <div>
+            WELCOME TO <span>DAILY DIGEST
+        `
+    },
+    {
+        subject:"Today's Headlines",
+        content:""
+    }
+] 
 
-    let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com", 
-        port: 465,
-        secure: true,
-        auth: {
-            user: process.env.EMAIL , 
-            pass: process.env.PASSWORD, 
-        },
-    });
+/**
+ * 
+ * @param {Number} status 
+ * @param {Object} userData 
+ * 0 => user signed in,
+ * 1 => news mail
+ * 2 => unsubscribe
+ */
+const mailer = async(status, userData) => {
+
+    let message;
+    if(status == 0) {
+        message = messages[0];
+    }else if(status == 1) {
+        message = messages[1];
+        let newsContentArray = await getNews();
+        newsContentArray.forEach(element => {
+            message.content += `
+            <div>
+                <h2>${element.title}</h2>
+                <br>
+                <img src="${element.urlToImage}" height="80%">
+                <br>
+                <p>${element.description}</p>
+            </div>`;
+        });
+    }
  
-    let message = {
-        from: `"News 👻😎🫡" <${env.EMAIL}>`, 
-        to: data.email, 
-        subject: "Today's Report", 
+    let emailMessage = {
+        from: `"News 👻😎🫡" <${process.env.EMAIL}>`, 
+        to: userData.email, 
+        subject: `${message.subject}`, 
         html:
             `<div style="box-shadow:0 0 5px;padding:2rem;border-radius:16px;background-color:#ffffff;margin:10px;">
-            <h1>${data.message}</h1>
+                ${message.content}
             </div>
             <div>
-            <h4>Vishnu Prasad Korada</h4>
-            <a href="https://github.com/vishnuprasad2004">My GitHub</a>`, 
+                <h5>Vishnu Prasad Korada</h5>
+                <a href="https://github.com/vishnuprasad2004">My GitHub</a>
+                <div>
+                    <a href="http://localhost:8080/dashboard"> Want to Unsubscribe </a>
+                </div>
+            </div>
+            `, 
     };
 
-    let info = await transporter.sendMail(message)
+    let info = await transporter.sendMail(emailMessage)
         .then((info) => {
             console.log("You sent an email successfully...!!!\nMessage sent 👍");    
         }).catch(error => {
-            console.log(error);
+            console.log(error.message);
             return;
         });
     
 }
+
+module.exports = { mailer };
