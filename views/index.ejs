@@ -78,6 +78,17 @@
             font-size: 30px;
 
         }
+        .popup {
+            position: absolute;
+            top:2vh;
+            left:50vw;
+            transform: translateX(-50%);
+            background-color: #233123ad;
+            border:2px solid #20ab20;
+            border-radius:0.5rem;
+            color:white;
+            padding: 1rem;
+        }
         footer {   
             position:absolute;
             bottom: 0;
@@ -123,7 +134,11 @@
                 <a href="/register"><button>Subscribe Now</button></a>
             </div>
         </div>
-
+        <% if (message != '') { %>
+            <div class="popup" id="popup">
+                <%= message %>
+            </div>
+        <% } %>
     </main>
 
     <footer>
@@ -153,6 +168,16 @@
         document.body.onload = () => {
             document.title = 'DailyDigest.';
         }
+
+        let popup = document.getElementById('popup');
+        setTimeout(()=> {
+            popup.style.display = 'none';
+        },5000);
+        // popup.addEventListener("change",() => {
+        //     if(popup.textContent != '') {
+        //         window.alert(popup.textContent);
+        //     }
+        // })
 
     </script>
 </body>

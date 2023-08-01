@@ -6,7 +6,7 @@ function schedule(users) {
     // minute hour day-of-month month day-of-the-week
     cron.schedule('1 * * * *', ()=> {
         users.forEach(user => {
-            mailer(1,user).then(()=> {
+            mailer(2,user).then(()=> {
                 console.log(`SCHEDULER: email sent successfully to ${user.email}`);
             }).catch((e)=> {
                 console.log('SCHEDULER: ' + e.message);

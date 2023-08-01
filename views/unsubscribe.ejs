@@ -1,0 +1,31 @@
+<!-- Welcome <%# name %> -->
+<!DOCTYPE html>
+<html lang="en">
+<%- include('head.ejs') %>
+<body>
+    
+    <div id="unsubscribe">
+        <form action="/unsubscribe" method="post">
+            <table>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" name="email" id="email" placeholder="example@gmail.com" required></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password" id="password" placeholder="I wouldn't see it🫣" required></td>
+                </tr>
+                <tr align="center">
+                    <td colspan="2"><button>Unsubscribe</button></td>
+                </tr>
+            </table>          
+        </form>
+    </div>
+    
+
+    <script>
+        document.title = "Unsubscribe😥";
+    </script>
+</body>
+</html>
+

@@ -16,7 +16,7 @@ app.set('view-engine','ejs');
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/',(req, res) => {
-    res.render('index.ejs');
+    res.render('index.ejs', { message:'' });
 });
 
 app.get('/register', (req, res) => {
@@ -25,32 +25,42 @@ app.get('/register', (req, res) => {
 
 app.post('/register', async(req, res) => {
     try {
+
         let hashedPwd = await bcrypt.hash(req.body.password, 10);
         let user = {
             name: req.body.name,
             email: req.body.email,
             password: hashedPwd,
-            dob: req.body.dob,
             interests: req.body.interests
         }
+
+        for(let i=0; i<users.length; i++) {
+            if(users[i].email == user.email) {
+                console.log('SERVER: user already exists');
+                await mailer(1,user);
+                res.render('index.ejs', { message:'You have already registered before...' });
+                return;
+            }
+        }
+
         users.push(user);
         console.log(users);
         console.log('SERVER: user created');
         await mailer(0,user);
-        setInterval(async() => {
-            await mailer(1,user);   
-        },200000);
-        res.redirect('/dashboard');
+        // await mailer(2,user);
+        res.render('index.ejs',{ message:'You registered Successfully🤗!!' });
+
     }catch(e) {
+
         console.log('SERVER: ' + e);
         res.redirect('/');
     }
 });
 
-app.get('/dashboard',(req, res) => {
-    res.render('dashboard.ejs',{name:users});
+app.get('/unsubscribe',(req, res) => {
+    res.render('unsubscribe.ejs');
 })
-app.post('/dashboard',async(req, res) => {
+app.post('/unsubscribe',async(req, res) => {
     
     let userIdx = -1;
     users.forEach((user,i) => {
@@ -59,15 +69,15 @@ app.post('/dashboard',async(req, res) => {
         }
     });
     if(userIdx == -1) {
-        console.log('SERVER: User not found...');
+        console.log('SERVER: User not found...'); 
     }else {
         let result = await bcrypt.compare(req.body.password, users[userIdx].password);
         if(result) {
-            mailer(2,users[userIdx]);
+            mailer(3,users[userIdx]);
             users.splice(userIdx,1);
             console.log("SERVER: User REMOVED");
             console.log(users);
-            res.redirect('/');
+            res.render('index.ejs', { message:'You have unsubscribed Successfully 😒' });
         }else {
             console.log('SERVER: Password Wrong'); 
         }

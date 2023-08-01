@@ -8,6 +8,8 @@
             --accentColor: darkblue;
         }
         body {
+            height:100vh;
+            width:100vw;
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
             background-color: rgb(14, 14, 16);
@@ -18,7 +20,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            filter: brightness(1);
         }
 
         button {
@@ -66,30 +67,23 @@
         input[type=text]  {
             width: 100%;
         }
+        input[type=email]  {
+            width: 100%;
+        }
+        input[type=password]  {
+            width: 100%;
+        }
         .interest-text {
             /* position: absolute; */
             top:1px;
             z-index: 1;
             color:red;
         }
-        #login {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height:100vh;
-            width:100vw;
-        }
-        #dashboard {
+        #unsubscribe {
             background-color: aliceblue;
             padding: 1rem;
             border-radius: 0.5rem;
         }
 
-        dialog {
-            padding: 1rem;
-            border-radius: 0.5rem;
-            background-color: aliceblue;
-            border: none;
-        }
     </style>
 </head>
