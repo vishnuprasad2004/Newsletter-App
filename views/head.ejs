@@ -9,8 +9,18 @@
         }
         body {
             font-family: 'Poppins', sans-serif;
-            /* overflow: hidden; */
+            overflow: hidden;
+            background-color: rgb(14, 14, 16);
+            opacity: 0.99;
+            background-image:  linear-gradient(#6a6a6a 1px, transparent 1px), linear-gradient(to right, #6a6a6a 1px, rgb(4, 4, 6) 1px);
+            background-size: 30px 30px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: brightness(1);
         }
+
         button {
             padding:0.5rem;
             border-radius: 0.25rem;
@@ -24,16 +34,11 @@
             color:var(--accentColor);
         }
         #register {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height:100vh;
-            width:100vw;
-        }
-        #register > form {
-            padding: 1rem;
-            /* border:2px solid var(--accentColor);
-            border-radius: 0.3rem; */
+            height: fit-content;
+            width: fit-content;
+            padding: 2rem;
+            border-radius: 1rem;
+            background-color:white;
         }
         .interest-imgs {
             width: 100px;
@@ -73,6 +78,18 @@
             align-items: center;
             height:100vh;
             width:100vw;
+        }
+        #dashboard {
+            background-color: aliceblue;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        dialog {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: aliceblue;
+            border: none;
         }
     </style>
 </head>

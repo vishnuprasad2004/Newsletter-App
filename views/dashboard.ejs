@@ -3,19 +3,38 @@
 <html lang="en">
 <%- include('head.ejs') %>
 <body>
-    Signed in <%= (name)  %>
-    <button id="unsubscribe">Unsubscribe</button>
+    <div id="dashboard">
+        Signed in Name: <%= (name)  %> <br>
+        Signed in Email: <%= (name)  %> <br>
+        <button id="unsubscribe">Unsubscribe</button>
+    </div>
+
     <dialog id="form">
         <form action="/dashboard" method="post">
-            <input type="email" name="email" id="email">
-            <input type="password" name="password" id="password">
-            <input type="submit" value="Unsubscribe">
+            <table>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" name="email" id="email"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password" id="password"></td>
+                </tr>
+                <tr align="center">
+                    <td colspan="2"><button>Unsubscribe</button></td>
+                </tr>
+            </table>          
         </form>
+        <td colspan="1"><button id="cancel-btn">Cancel</button></td>
     </dialog>
+
     <script>
         document.title = "Dashboard";
         document.querySelector("#unsubscribe").onclick = () => {
             document.querySelector('#form').showModal();
+        }
+        document.querySelector('#cancel-btn').onclick = () => {
+            document.querySelector('#form').close();
         }
     </script>
 </body>

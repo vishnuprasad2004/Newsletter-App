@@ -1,16 +1,15 @@
 const { mailer } = require("./mailer");
 const cron = require('node-cron');
 
-// let users = [];
 
 function schedule(users) {
     // minute hour day-of-month month day-of-the-week
-    cron.schedule('2 * * * *', ()=> {
+    cron.schedule('1 * * * *', ()=> {
         users.forEach(user => {
             mailer(1,user).then(()=> {
-                console.log(`email sent successfully to ${user.email}`);
+                console.log(`SCHEDULER: email sent successfully to ${user.email}`);
             }).catch((e)=> {
-                console.log(e.message);
+                console.log('SCHEDULER: ' + e.message);
             })
         });
     });

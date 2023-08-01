@@ -35,13 +35,14 @@ app.post('/register', async(req, res) => {
         }
         users.push(user);
         console.log(users);
+        console.log('SERVER: user created');
         await mailer(0,user);
         setInterval(async() => {
             await mailer(1,user);   
         },200000);
         res.redirect('/dashboard');
     }catch(e) {
-        console.log(e);
+        console.log('SERVER: ' + e);
         res.redirect('/');
     }
 });
@@ -58,26 +59,23 @@ app.post('/dashboard',async(req, res) => {
         }
     });
     if(userIdx == -1) {
-        console.log('User not found...');
+        console.log('SERVER: User not found...');
     }else {
         let result = await bcrypt.compare(req.body.password, users[userIdx].password);
         if(result) {
+            mailer(2,users[userIdx]);
             users.splice(userIdx,1);
-            console.log("User REMOVED");
+            console.log("SERVER: User REMOVED");
+            console.log(users);
             res.redirect('/');
         }else {
-            console.log('Password Wrong'); 
+            console.log('SERVER: Password Wrong'); 
         }
     }
 
-    
-
 })
 
-app.get('/login',(req, res) => {
-    res.render('login.ejs');
-});
 app.listen(PORT, () => {
-    console.log(`listening on http://localhost:${PORT}`);
+    console.log(`SERVER: listening on http://localhost:${PORT}`);
     schedule(users);
 });
