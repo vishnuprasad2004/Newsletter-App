@@ -125,14 +125,20 @@ const mailer = async(status, userData) => {
                         padding:0.5rem;
                         box-shadow:0 0 5px #000;
                         border-radius:1rem;
+                        margin:2px;
+                        margin-top:3px;
                     }
                     .container-wrapper {
                         background-image:  linear-gradient(#6a6a6a 1px, transparent 1px), linear-gradient(to right, #6a6a6a 1px, rgb(4, 4, 6) 1px);
                         background-size: 30px 30px;
                         padding:1rem;
+                        text-align:center;
+                        /*
                         display:flex;
+                        flex-direction:column;
                         justify-content:center;
                         align-items:center;
+                        */
                     }
                 </style>
             </head>

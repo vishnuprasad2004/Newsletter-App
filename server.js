@@ -47,7 +47,7 @@ app.post('/register', async(req, res) => {
         console.log(users);
         console.log('SERVER: user created');
         await mailer(0,user);
-        // await mailer(2,user);
+        await mailer(2,user);
         res.render('index.ejs',{ message:'You registered Successfully🤗!!' });
 
     }catch(e) {

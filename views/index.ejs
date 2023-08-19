@@ -1,114 +1,11 @@
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DailyDigest.</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins');
-        @import url('https://fonts.googleapis.com/css?family=MuseoModerno');
-        @import url('https://fonts.googleapis.com/css?family=Shrikhand');
-        body {
-            font-family: 'Poppins',sans-serif;
-            overflow: hidden;
-            height:100vh;
-            width:100vw;
-            margin:0;
-            color:white;
-        }
-        
-        h1 {
-            font-family: 'MuseoModerno', sans-serif;
-        }
-        
-        button {
-            padding: 0.5rem;
-            border-radius: 0.2rem;
-            background-color: black;
-            color:aliceblue;
-            /* border:2px solid transparent; */
-        }
-        button:hover {
-            background-color: #6a6a6a;
-        }
-        main {
-            height:100%;
-            width:100%;
-            background-color: rgb(14, 14, 16);
-            opacity: 0.99;
-            background-image:  linear-gradient(#6a6a6a 1px, transparent 1px), linear-gradient(to right, #6a6a6a 1px, rgb(4, 4, 6) 1px);
-            background-size: 30px 30px;
-
-        }
-
-        .heading {
-            z-index: -1;
-            font-family:'Shrikhand',sans-serif;   
-            font-size: 100px;
-        }
-
-        .heading-container {
-            position: absolute;
-            top:-400px;
-        }
-
-        .container-wrapper {
-            z-index: 2;
-            height:100%;
-            width:100%;
-            display: flex;
-            justify-content:end;
-            align-items: center;
-        }
-        .container {
-            z-index: 2;
-            background-color: rgb(250, 250, 250);
-            color:rgb(27, 0, 0);
-            height: fit-content;
-            width:30%;
-            margin-right: 5%;
-            padding:2.5rem;
-            border-radius: 1rem;
-            backdrop-filter: blur(2px) brightness(0.8);
-            
-        }
-        .emojis {
-            display: flex;
-            justify-content: space-evenly;
-            font-size: 30px;
-
-        }
-        .popup {
-            position: absolute;
-            top:2vh;
-            left:50vw;
-            transform: translateX(-50%);
-            background-color: #233123ad;
-            border:2px solid #20ab20;
-            border-radius:0.5rem;
-            color:white;
-            padding: 1rem;
-        }
-        footer {   
-            position:absolute;
-            bottom: 0;
-            width:100vw;
-            text-align: center;
-            padding-bottom: 10px;
-            padding-top: 10px;
-            background-color: rgba(21, 21, 21, 0.567);    
-        }
-        footer a {
-            color:aliceblue;
-            margin:5px;
-        }
-    </style>
-</head>
+<%- include('./indexHead.ejs') %>
 <body>
 
     <main>
 
         <div class="heading-container">
+            <span class="heading">DailyDigest.</span><br>
             <span class="heading">DailyDigest.</span><br>
             <span class="heading">DailyDigest.</span><br>
             <span class="heading">DailyDigest.</span><br>
@@ -128,10 +25,12 @@
                     <div class="emoji">🤖</div>
                     <div class="emoji">📱</div>
                 </div>
-                <h1>DailyDigest.</h1>
+                <br>
+                <a href="/"><h1 id="name" class="fancy word">@DailyDigest.</h1></a>
                 <p style="font-size: 20px;">Get Smarter by reading just an Email everyday. </p>
                 <p style="opacity: 0.8;font-size:15px;">DailyDigest is a short and free newletter in your inbox everyday. Get the most interesting stories and articles based on your interests.</p>
-                <a href="/register"><button>Subscribe Now</button></a>
+                
+                <a href="/register"><button id="subscribe">Subscribe Now</button></a>
             </div>
         </div>
         <% if (message != '') { %>
@@ -145,39 +44,52 @@
         <a href="http://github.com/vishnuprasad2004">Developer</a>
         <a href="http://github.com/vishnuprasad2004/Newsletter-App">Source Code</a>
     </footer>
-    <script>
-        gsap.to(".heading-container", {
-            y: 400, // Move the element 400 pixels to the right
-            duration: 2, // Animation duration in seconds
-            ease: "power1.out", // Easing function (optional, choose one from GSAP's easing functions)
-            repeat: -1, // Repeat the animation indefinitely
-            // repeatDelay: 1, // Add a delay of 1 second between each repeat
-            yoyo: true, // Make the animation go back and forth (optional)
-        });
 
+
+    <script>
+        
+        let popup = document.getElementById('popup');
+
+        // gsap
+        gsap.to(".heading-container", {
+            y: 400, 
+            duration: 2, 
+            ease: "power1.out", 
+            repeat: -1, 
+            yoyo: true, 
+        });
         gsap.to(".emoji", {
             y:20,
             // duration:2,
             stagger:1,
-            ease: "sine.inOut",
+            ease: "ease",
             repeat: -1,
             yoyo: true,
 
         });
+        // loading code
         document.title = 'Loading... DailyDigest.';
         document.body.onload = () => {
             document.title = 'DailyDigest.';
         }
-
-        let popup = document.getElementById('popup');
+        // popup code
         setTimeout(()=> {
             popup.style.display = 'none';
         },5000);
-        // popup.addEventListener("change",() => {
-        //     if(popup.textContent != '') {
-        //         window.alert(popup.textContent);
-        //     }
-        // })
+
+        // hover effect code
+        function enhance(id) {
+            const element = document.getElementById(id);
+            let text = element.innerText.split("");
+            element.textContent = "";
+            text.forEach(letter => {
+                const span = document.createElement("span");
+                span.className = "letter";
+                span.innerText = letter;
+                element.appendChild(span);
+            });
+        }
+        enhance("name");
 
     </script>
 </body>
